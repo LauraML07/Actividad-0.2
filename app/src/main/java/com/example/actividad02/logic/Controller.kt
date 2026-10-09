@@ -15,7 +15,7 @@ class Controller(private val activity: MainActivity) {
         onAddCustomer = { id, name, surname, phone ->
             val nuevo = Cliente(id, name, surname, phone)
             clientList.add(nuevo)
-            Log.d(MainActivity.LOG_TAG, "[LAMBDA] Cliente insertado -> ID: $id | $name $surname | Tel: $phone")
+            Log.d(MainActivity.LOG_TAG, "Cliente añadido: ID $id - $name $surname, Tel: $phone")
             printConsoleData()
         },
         onUpdateCustomer = { id, name, surname, phone ->
@@ -24,18 +24,18 @@ class Controller(private val activity: MainActivity) {
                 cliente.name = name
                 cliente.surname = surname
                 cliente.phone = phone
-                Log.d(MainActivity.LOG_TAG, "[LAMBDA] Cliente modificado -> ID: $id | $name $surname | Tel: $phone")
+                Log.d(MainActivity.LOG_TAG, "Cliente modificado: ID $id")
             } else {
-                Log.d(MainActivity.LOG_TAG, "[LAMBDA] No encontrado ID: $id para modificar")
+                Log.d(MainActivity.LOG_TAG, "Error: no se encontró al cliente con ID $id")
             }
             printConsoleData()
         },
         onDeleteCustomer = { id ->
             val borrado = clientList.removeIf { it.id == id }
             if (borrado) {
-                Log.d(MainActivity.LOG_TAG, "[LAMBDA] Cliente con ID: $id eliminado")
+                Log.d(MainActivity.LOG_TAG, "Cliente borrado (ID: $id)")
             } else {
-                Log.d(MainActivity.LOG_TAG, "[LAMBDA] No encontrado ID: $id para eliminar")
+                Log.d(MainActivity.LOG_TAG, "No se pudo borrar, el ID $id no existe")
             }
             printConsoleData()
         }
@@ -60,11 +60,9 @@ class Controller(private val activity: MainActivity) {
     }
 
     private fun printConsoleData() {
-        val sb = StringBuilder()
-        sb.append("\n--- LISTA ACTUAL DE CLIENTES (${clientList.size}) ---\n")
+        Log.d(MainActivity.LOG_TAG, "--- Total de clientes: ${clientList.size} ---")
         clientList.forEach {
-            sb.append("ID: ${it.id} | ${it.name} ${it.surname} | Tel: ${it.phone}\n")
+            Log.d(MainActivity.LOG_TAG, "Cliente ${it.id}: ${it.name} ${it.surname} (${it.phone})")
         }
-        Log.d(MainActivity.LOG_TAG, sb.toString())
     }
 }
