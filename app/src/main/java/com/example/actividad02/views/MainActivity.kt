@@ -1,9 +1,9 @@
-package com.example.actividad_01.views
-
+package com.example.actividad02.views
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.actividad02.R
-import com.example.actividad_01.logic.Controller
+import com.example.actividad_02.logic.Controller
+import com.example.actividad_02.views.Dialog
 
 class MainActivity : AppCompatActivity() {
 

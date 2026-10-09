@@ -1,4 +1,4 @@
-package com.example.actividad_01.logic
+package com.example.actividad02.logic
 
 data class Cliente(
     val id: Int,

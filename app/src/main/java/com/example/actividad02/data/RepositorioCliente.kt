@@ -1,6 +1,6 @@
 package com.example.actividad02.data
 
-import com.example.actividad_01.logic.Cliente
+import com.example.actividad02.logic.Cliente
 
 class RepositorioCliente {
     companion object {

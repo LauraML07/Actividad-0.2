@@ -1,12 +1,13 @@
-package com.example.actividad_01.logic
+package com.example.actividad02.logic
 
 import android.util.Log
 import android.widget.ImageView
 import com.example.actividad02.R
 import com.example.actividad02.data.RepositorioCliente
-import com.example.actividad_01.logic.interfaz.OperacionesCrud
-import com.example.actividad_01.views.Dialog
-import com.example.actividad_01.views.MainActivity
+import com.example.actividad02.logic.Cliente
+import com.example.actividad02.logic.interfaz.OperacionesCrud
+import com.example.actividad02.views.Dialog
+import com.example.actividad02.views.MainActivity
 
 class Controller(
     private val activity: MainActivity,
@@ -38,7 +39,7 @@ class Controller(
     override fun clientAdd(id: Int, name: String, surname: String, phone: String) {
         val nuevoCliente = Cliente(id, name, surname, phone)
         clientList.add(nuevoCliente)
-        Log.d(MainActivity.LOG_TAG, "Cliente insertado -> ID: $id | $name $surname | Tel: $phone")
+        Log.d(MainActivity.LOG_TAG, "Cliente añadido: ID $id - $name $surname, Tel: $phone")
         printConsoleData()
     }
 
@@ -48,9 +49,9 @@ class Controller(
             cliente.name = name
             cliente.surname = surname
             cliente.phone = phone
-            Log.d(MainActivity.LOG_TAG, "Cliente modificado -> ID: $id | $name $surname | Tel: $phone")
+            Log.d(MainActivity.LOG_TAG, "Cliente modificado: ID $id")
         } else {
-            Log.d(MainActivity.LOG_TAG, "No se encontró cliente con ID: $id para modificar")
+            Log.d(MainActivity.LOG_TAG, "Error: no se encontró al cliente con ID $id")
         }
         printConsoleData()
     }
@@ -58,19 +59,17 @@ class Controller(
     override fun clientDel(id: Int) {
         val borrado = clientList.removeIf { it.id == id }
         if (borrado) {
-            Log.d(MainActivity.LOG_TAG, "Cliente con ID: $id eliminado con éxito")
+            Log.d(MainActivity.LOG_TAG, "Cliente borrado (ID: $id)")
         } else {
-            Log.d(MainActivity.LOG_TAG, "No se encontró cliente con ID: $id para eliminar")
+            Log.d(MainActivity.LOG_TAG, "No se pudo borrar, el ID $id no existe")
         }
         printConsoleData()
     }
 
     private fun printConsoleData() {
-        val sb = StringBuilder()
-        sb.append("\n--- LISTA ACTUAL DE CLIENTES (${clientList.size}) ---\n")
+        Log.d(MainActivity.LOG_TAG, "--- Total de clientes: ${clientList.size} ---")
         clientList.forEach {
-            sb.append("ID: ${it.id} | ${it.name} ${it.surname} | Tel: ${it.phone}\n")
+            Log.d(MainActivity.LOG_TAG, "Cliente ${it.id}: ${it.name} ${it.surname} (${it.phone})")
         }
-        Log.d(MainActivity.LOG_TAG, sb.toString())
     }
 }
