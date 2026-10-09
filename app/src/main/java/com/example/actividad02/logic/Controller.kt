@@ -16,10 +16,8 @@ class Controller(
     private val clientList: MutableList<Cliente> = RepositorioCliente.listClients.toMutableList()
 
     fun start() {
-        // Asignamos este Controller como listener del Dialog
         dialog.setListener(this)
 
-        // Configuramos la interacción de los botones de la vista
         val btnRegister = activity.findViewById<ImageView>(R.id.myButtonAdd)
         val btnModify = activity.findViewById<ImageView>(R.id.myButtonEdit)
         val btnRemove = activity.findViewById<ImageView>(R.id.myButtonDel)

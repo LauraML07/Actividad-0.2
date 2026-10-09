@@ -15,13 +15,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1. Instanciamos el diálogo
         val dialog = Dialog()
 
-        // 2. Instanciamos el controller pasando la Activity (this) y el diálogo
         val controller = Controller(this, dialog)
 
-        // 3. Cedemos el control al Controller
         controller.start()
     }
 }
